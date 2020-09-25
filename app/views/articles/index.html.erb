@@ -12,8 +12,13 @@
   <% @articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
-      <td><%= article.description %>></td>
-      <td>Placeholder</td>
+      <td><%= article.description %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+<!--How to add a link: What you want it to say, and then it's path-->
+<!--Exposing get request for the article which takes you to show page-->
+<!--Adding the delete method at end you will change it to a delete request -->
+      <td><%= link_to 'Delete', article_path(article), method: :delete %></td>
     </tr>
     <% end %>
   </tbody>
