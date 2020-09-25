@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   def show
+    #Allows rails to find the article needed by its id
     @article = Article.find(params[:id])
   end
 
@@ -14,12 +15,17 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  def edit
+    #Allows rails to find the article needed by its id
+    @article = Article.find(params[:id])
+  end
+
   #You need this with code in order to actually create your article
   def create
     #This code just renders the article info onto the page as an example
     # render plain: params[:article]
 
-    #Need to include it this way otherwise it will be whitelisted
+    #Need to include so it will be whitelisted
     @article = Article.new(params.require(:article).permit(:title, :description))
     #Then you save the article
     if @article.save
@@ -33,6 +39,17 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article)
     else
       render 'new'
+    end
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description))
+      flash[:notice] = "Article was updated successfully!"
+      redirect_to article_path(@article)
+    else
+      #Renders the edit page with the list of errors
+      render 'edit'
     end
   end
 

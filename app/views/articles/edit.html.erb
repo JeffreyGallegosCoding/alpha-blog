@@ -1,0 +1,32 @@
+<h1>Edit your article</h1>
+
+<!--Reference new.html.erb for additional info since these two pages have similarities-->
+<% if @article.errors.any? %>
+  <h2>The following errors prevented the article from being saved</h2>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
+<!--In order to get existing data to display you have to working with the article model from the beginning-->
+<!--This allows rails to see the model, find the id, and pre-fill the info for us-->
+<!--Putting the form_with in this format allows rails to generate the url needed to access the rails routes-->
+<%= form_with(model: @article, local: true) do |f| %>
+  <p>
+    <%= f.label :title %>
+    <br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
