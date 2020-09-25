@@ -1,10 +1,8 @@
-class ArticlesController < ApplicationController
-  #This performs the method before it does anything else
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+#class ArticlesController < ApplicationController
 
   def show
     #Allows rails to find the article needed by its id
-
+    @article = Article.find(params[:id])
   end
 
   #This code grabs all of your articles in the database for the table on the index page
@@ -19,7 +17,7 @@ class ArticlesController < ApplicationController
 
   def edit
     #Allows rails to find the article needed by its id
-
+    @article = Article.find(params[:id])
   end
 
   #You need this with code in order to actually create your article
@@ -28,7 +26,7 @@ class ArticlesController < ApplicationController
     # render plain: params[:article]
 
     #Need to include so it will be whitelisted
-    @article = Article.new(article_params)
+    @article = Article.new(params.require(:article).permit(:title, :description))
     #Then you save the article
     if @article.save
 
@@ -45,7 +43,8 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(article_params)
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description))
       flash[:notice] = "Article was updated successfully!"
       redirect_to article_path(@article)
     else
@@ -55,22 +54,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path
     flash[:notice] = "Article was deleted successfully!"
   end
 
-#Any methods put in here are only for this controller: it helps clean up repeatable code
-  #Privates don't need an end. Only add methods that are only for the specific controller
-  private
-
-  def set_article
-    @article = Article.find(params[:id])
-  end
-
-  def article_params
-    params.require(:article).permit(:title, :description)
-  end
-
-
-end
+#end

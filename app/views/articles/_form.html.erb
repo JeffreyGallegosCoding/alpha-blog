@@ -1,0 +1,40 @@
+<!--In order to get existing data to display you have to working with the article model from the beginning-->
+<!--This allows rails to see the model, find the id, and pre-fill the info for us-->
+<!--Putting the form_with in this format allows rails to generate the url needed to access the rails routes-->
+<%= form_with(model: @article, local: true) do |f| %>
+  <p>
+    <%= f.label :title %>
+    <br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<!--On the old create new article-->
+<!--reference ruby form helpers-->
+<!--Form_with is the main helper form -->
+<!--First provide the model referenced by scope: :article is the model name -->
+<!--The url is where you are specifying where you are sending the article to (articles_path == /articles in url)-->
+<!--local is the way to post the article: only have to use if you are using form_with-->
+<%#= form_with scope: :article, url: articles_path, local: true do |f| %>
+<!--  <p>-->
+    <%#= f.label :title %>
+<!--    <br>-->
+    <%#= f.text_field :title %>
+<!--  </p>-->
+<!--  <p>-->
+    <%#= f.label :description %>
+<!--    <br>-->
+    <%#= f.text_area :description %>
+<!--  </p>-->
+<!--  <p>-->
+    <%#= f.submit %>
+<!--  </p>-->
+<%# end %>

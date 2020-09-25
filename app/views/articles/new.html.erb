@@ -1,36 +1,9 @@
 <h1>Create a New Article!</h1>
 
-<!--This is just in case you hit any errors when creating a new article-->
-<!--These messages come from the validation restrictions you set up in your article.rb file-->
-<% if @article.errors.any? %>
-  <h2>The following errors prevented the article from being saved</h2>
-  <ul>
-  <% @article.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-  <% end %>
+<%= render 'article_error_messages' %>
 
+<!--Partial that you are referencing-->
+<%= render 'form' %>
 
-<!--reference ruby form helpers-->
-<!--Form_with is the main helper form -->
-<!--First provide the model referenced by scope: :article is the model name -->
-<!--The url is where you are specifying where you are sending the article to (articles_path == /articles in url)-->
-<!--local is the way to post the article: only have to use if you are using form_with-->
-<%= form_with scope: :article, url: articles_path, local: true do |f| %>
-  <p>
-    <%= f.label :title %>
-    <br>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %>
-    <br>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
   <br>
   <%= link_to 'Go Back', articles_path %>
-<% end %>
