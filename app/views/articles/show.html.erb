@@ -2,3 +2,8 @@
 
 <h2>Title: <%= @article.title %></h2>
 <p><strong>Description: <%= @article.description %></strong></p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<!--Added javascript confirmation at end to prompt user-->
+<%= link_to 'Delete', article_path(@article), method: :delete, data: { Confirm: "Are you sure?" } %> |
+<%= link_to 'Go Back', articles_path %>
