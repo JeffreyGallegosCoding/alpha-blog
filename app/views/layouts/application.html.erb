@@ -3,12 +3,15 @@
   <head>
     <title>AlphaBlog</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<!--Stylesheet link tag is referring to the /assets/stylesheets/application.css file in directory-->
+<!--Any other style sheets that you create will be served through this manifest file-->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<!--Javascript link tag is referring to the /assets/javascripts/application.js file-->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
+    <%= render 'layouts/navigation' %>
 <!-- How to refer to your messages partial: don't need underscore-->
     <%= render 'layouts/messages' %>
     <%= yield %>

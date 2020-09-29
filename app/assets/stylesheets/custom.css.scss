@@ -1,0 +1,44 @@
+//This file will be served through the application.css file
+@import "bootstrap";
+
+.navbar {
+  background-color: black !important;
+  padding-right: 25px;
+  padding-left: 25px
+}
+
+.nav-link {
+  color: white !important;
+}
+
+#logo {
+  color: white;
+}
+
+#home-container {
+  margin-top: 25px;
+}
+
+.jumbotron {
+  background-image: asset_data_url('homepagejumbotron.jpg');
+
+  //Good positioning layout to get a larger image to fit in a container
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 425px
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+  background-color: lightgrey;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
