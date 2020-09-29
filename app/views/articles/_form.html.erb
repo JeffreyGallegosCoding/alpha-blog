@@ -1,21 +1,34 @@
 <!--In order to get existing data to display you have to working with the article model from the beginning-->
 <!--This allows rails to see the model, find the id, and pre-fill the info for us-->
 <!--Putting the form_with in this format allows rails to generate the url needed to access the rails routes-->
-<%= form_with(model: @article, local: true) do |f| %>
-  <p>
-    <%= f.label :title %>
-    <br>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %>
-    <br>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :title, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :title, class: "form-control p-3 mb-3 shadow rounded", placeholder: "Title of Article" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= f.label :description, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <!--      you can add rows to indicate how tall you want your field to be-->
+            <%= f.text_area :description, rows: 10, class: "form-control p-3 mb-1 shadow rounded", placeholder: "Description of Article" %>
+          </div>
+        </div>
+
+        <div class="form-group row justify-content-center mt-4">
+          <%= f.submit class: "btn btn-outline-light btn-lg col-3" %>
+        </div>
+
+      <% end %>
+      <%= link_to '[ Cancel and Go Back ]', articles_path, class: "text-info" %>
+    </div>
+  </div>
+</div>
+
 
 <!--On the old create new article-->
 <!--reference ruby form helpers-->
