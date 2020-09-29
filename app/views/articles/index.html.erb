@@ -1,31 +1,30 @@
-<h1>Articles Listing Page</h1>
+<div id="page-content">
+  <h1 class="text-center mt-4">Listing All Articles</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-<!--This allows the actions column to span over the three actions-->
-    <th colspan="3">Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.title %></td>
-      <td><%= article.description %></td>
-      <!--How to add a link: What you want it to say, and then it's path-->
-      <td><%= link_to 'Show', article_path(article) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-<!--Exposing get request for the article which takes you to show page-->
-<!--Adding the delete method at end you will change it to a delete request -->
-<!--Added JS confirm at end-->
-      <td><%= link_to 'Delete', article_path(article), method: :delete, data: { Confirm: "Are you sure?" } %></td>
-    </tr>
+  <div class="container">
+    <% @articles.each do |article| %>
+      <div class="row justify-content-md-center">
+        <div class="col-8 mt-4">
+          <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-header font-italic">
+              By Jeff Gallegos
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success" %></h5>
+<!--              truncate is a rails method that limits the number of characters displayed-->
+              <p class="card-text"><%= truncate(article.description, length: 100) %></p>
+              <%= link_to "View", article, class: "btn btn-outline-success" %>
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-warning" %>
+              <%= link_to "Delete", article_path(article), method: :delete, data: { Confirm: "Are you sure?" }, class: "btn btn-outline-dark" %>
+            </div>
+            <div class="card-footer text-muted">
+<!--              time_ago_in_words is a rails method that simplifies the time into words-->
+              <small>Created <%= time_ago_in_words(article.created_at) %> ago,
+                edited <%= time_ago_in_words(article.updated_at) %> ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'Create An Article',  new_article_path %>
-<br>
-<%= link_to 'Go to About Page', about_path %>
+  </div>
+</div>
