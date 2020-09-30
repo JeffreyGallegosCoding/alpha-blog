@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
 
     #Need to include so it will be whitelisted
     @article = Article.new(article_params)
+    @article.user = User.first
     #Then you save the article
     if @article.save
 

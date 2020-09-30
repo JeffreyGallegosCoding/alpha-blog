@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  #part of the one to many relationship one user has many articles.
+  has_many :articles
   # validates the presence of the username before user object is saved to database
   validates :username, presence: true,
             uniqueness: { case_sensitive: false },
