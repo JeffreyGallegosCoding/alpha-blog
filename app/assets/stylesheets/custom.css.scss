@@ -2,9 +2,13 @@
 @import "bootstrap";
 
 .navbar {
-  background-color: black !important;
+  background-color: green !important;
   padding-right: 25px;
   padding-left: 25px
+}
+
+#navtoggle {
+  color: white !important;
 }
 
 .nav-link {
