@@ -3,6 +3,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find(params[:id])
+    #Gives articles instance variable and pulls all articles associated with user into the variable
+    @articles = @user.articles
+  end
+
   def create
     #Similar to articles create method in articles controller
     @user = User.new(user_params)
