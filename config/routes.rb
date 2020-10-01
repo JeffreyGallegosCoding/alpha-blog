@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   #post 'users', to: 'users#create'
   #Or you can use the resources method below to get all of the routes except new
   resources :users, except: [:new]
+  # All three methods are needed for session login and logout
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end
