@@ -24,7 +24,10 @@
           </div>
         </div>
         <div class="form-group row justify-content-center mt-4">
-          <%= f.submit "Signup", class: "btn btn-outline-light btn-lg col-3" %>
+<!--          Below is how you can have the submit button both reference signup and update account.
+              By using the new_record method to test whether it is a new record or not
+              If it is a new record it will say signup otherwise it will say update account-->
+          <%= f.submit(@user.new_record? ? "Signup" : "Update Account", class: "btn btn-outline-light btn-lg col-3") %>
         </div>
 
       <% end %>
