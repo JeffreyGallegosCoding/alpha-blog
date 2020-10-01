@@ -6,7 +6,7 @@ module ApplicationHelper
   #Gave the helper method a default size option for the image if nothing provided.
   def gravatar_for(user, options = {size: 80})
     #get the email from url-parameters or what email you have in database
-    email_address = @user.email.downcase
+    email_address = user.email.downcase
     #create the hash for the email address
     hash = Digest::MD5.hexdigest(email_address)
     #If the size is provided for the image

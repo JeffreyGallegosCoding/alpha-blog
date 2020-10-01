@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @articles = @user.articles
   end
 
+  def index
+    @users = User.all
+  end
+
   def create
     #Similar to articles create method in articles controller
     @user = User.new(user_params)
