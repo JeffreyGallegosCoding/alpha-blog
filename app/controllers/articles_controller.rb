@@ -9,7 +9,8 @@ class ArticlesController < ApplicationController
 
   #This code grabs all of your articles in the database for the table on the index page
   def index
-    @articles = Article.all
+    # Paginate will still grab all articles but display them a specific amount per page
+    @articles = Article.paginate(page: params[:page], per_page: 5)
   end
 
   #This code is for you to create a new article before the create instance action(only for first time you load page)
