@@ -13,8 +13,11 @@
             <!--            truncate is a rails method that limits the number of characters displayed-->
             <p class="card-text"><%= truncate(article.description, length: 100) %></p>
             <%= link_to "View", article, class: "btn btn-outline-success" %>
-            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-warning" %>
-            <%= link_to "Delete", article_path(article), method: :delete, data: { Confirm: "Are you sure?" }, class: "btn btn-outline-dark" %>
+<!--            If a user is logged in they only have access to edit/delete their own articles-->
+            <% if logged_in? && article.user == current_user %>
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-warning" %>
+              <%= link_to "Delete", article_path(article), method: :delete, data: { Confirm: "Are you sure?" }, class: "btn btn-outline-dark" %>
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             <!--             time_ago_in_words is a rails method that simplifies the time into words-->

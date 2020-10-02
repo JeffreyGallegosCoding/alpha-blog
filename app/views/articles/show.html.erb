@@ -21,8 +21,10 @@
         </div>
         <div class="card-body">
           <div class="card-text text-left"><%= simple_format(@article.description) %></div>
+          <% if logged_in? && @article.user == current_user %>
               <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-warning" %>
               <%= link_to "Delete", article_path(@article), method: :delete, data: { Confirm: "Are you sure?" }, class: "btn btn-outline-dark" %>
+          <% end %>
         </div>
         <div class="card-footer text-muted">
           <!--              time_ago_in_words is a rails method that simplifies the time into words-->
