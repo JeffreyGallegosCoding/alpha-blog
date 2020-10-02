@@ -31,13 +31,23 @@
       <li class="nav-item">
         <%= link_to "Bloggers", users_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Log In", login_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-<!--        Have to specify a delete request-->
-        <%= link_to "Log Out", logout_path, class: "nav-link", method: :delete %>
-      </li>
+<!-- This if/else statement swaps the login/out links depending on if the user is signed in or not -->
+      <% if logged_in? %>
+        <li class="nav-item">
+          <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+  <!--        Have to specify a delete request-->
+          <%= link_to "Log Out", logout_path, class: "nav-link", method: :delete %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Log In", login_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", signup_path, class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
