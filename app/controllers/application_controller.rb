@@ -19,4 +19,13 @@ class ApplicationController < ActionController::Base
     # Check if the current user exists by turning into a boolean (either true/false)
     !!current_user
   end
+
+  # If the user is not logged this will restrict what they can access and will redirect them to the login page
+  def require_user
+    if !logged_in?
+      flash[:alert] = "You must be logged in to perform this action"
+      redirect_to login_path
+    end
+  end
+
 end

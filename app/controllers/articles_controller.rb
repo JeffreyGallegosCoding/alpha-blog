@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   #This performs the method before it does anything else
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show
     #Allows rails to find the article needed by its id
@@ -72,6 +74,14 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  # Allows the user to only access their article info even through url manipulation
+  def require_same_user
+    if current_user != @article.user
+      flash[:alert] = "You can only edit/delete from your own article listings"
+      redirect_to @article
+    end
   end
 
 
