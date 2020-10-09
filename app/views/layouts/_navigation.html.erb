@@ -36,7 +36,7 @@
 <!-- This if/else statement swaps the login/out links depending on if the user is signed in or not -->
       <% if logged_in? %>
         <li class="nav-item">
-          <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+          <%= "(Admin)" if current_user.admin? %> <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
   <!--        Have to specify a delete request-->

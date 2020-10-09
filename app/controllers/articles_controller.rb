@@ -78,7 +78,7 @@ class ArticlesController < ApplicationController
 
   # Allows the user to only access their article info even through url manipulation
   def require_same_user
-    if current_user != @article.user
+    if current_user != @article.user && !current_user.admin
       flash[:alert] = "You can only edit/delete from your own article listings"
       redirect_to @article
     end

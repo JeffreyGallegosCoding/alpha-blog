@@ -33,8 +33,8 @@ class UsersController < ApplicationController
     @user.destroy
     # since the session is set to the users id you have to set it to nil otherwise rails
     # wont be able to find the id and it will throw an error
-    session[:user_id] = nil
-    flash[:alert] = "Your account with all of its articles has been successfully deleted"
+    session[:user_id] = nil if @user == current_user
+    flash[:alert] = "Account with all of its articles has been successfully deleted"
     redirect_to articles_path
   end
 
@@ -62,8 +62,8 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @user
-      flash[:alert] = "You can only edit your own account"
+    if current_user != @user && !current_user.admin?
+      flash[:alert] = "You can only edit or delete your own account"
       redirect_to @user
     end
   end
