@@ -2,7 +2,7 @@ class User < ApplicationRecord
   #Before each user email is saved all letters are put in lower case
   before_save { self.email = email.downcase }
   #part of the one to many relationship one user has many articles.
-  has_many :articles
+  has_many :articles, dependent: :destroy
   # validates the presence of the username before user object is saved to database
   validates :username, presence: true,
             uniqueness: { case_sensitive: false },

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:edit, :update]
-  before_action :require_same_user, only: [:edit, :update]
+  # So only the logged in user can access
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -26,6 +27,15 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @user.destroy
+    # since the session is set to the users id you have to set it to nil otherwise rails
+    # wont be able to find the id and it will throw an error
+    session[:user_id] = nil
+    flash[:alert] = "Your account with all of its articles has been successfully deleted"
+    redirect_to articles_path
   end
 
   def edit
