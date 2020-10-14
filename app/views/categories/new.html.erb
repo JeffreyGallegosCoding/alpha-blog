@@ -1,0 +1,30 @@
+<h1 class="text-center mt-4">Create a new category</h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors', obj: @category %>
+      <%= form_with(model: @category, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :name, "Category Name", class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :name, class: "form-control p-3 mb-3 shadow rounded", placeholder: "Enter A Name" %>
+          </div>
+        </div>
+
+        <div class="form-group row justify-content-center mt-4">
+          <!--          Below is how you can have the submit button both reference signup and update account.
+                        By using the new_record method to test whether it is a new record or not
+                        If it is a new record it will say signup otherwise it will say update account-->
+          <%= f.submit class: "btn btn-outline-light btn-lg col-3" %>
+        </div>
+
+      <% end %>
+      <div class="mb-3">
+        <%= link_to '[ Cancel and Go Back ]', articles_path, class: "text-info" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
