@@ -7,4 +7,10 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+
+  def sign_in_as(user)
+    # Can't user user.password b/c you will get the hashed version of the password
+    post login_path, params: { session: { email: user.email, password: "password" } }
+  end
 end

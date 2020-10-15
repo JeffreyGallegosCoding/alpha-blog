@@ -2,7 +2,15 @@ require 'test_helper'
 
 class CreateCategoryTest < ActionDispatch::IntegrationTest
   # Tests the behavior you would like the application to follow when creating a category
+  setup do
+    # Use create instead of new because you want it to actually hit the table
+    @admin_user = User.create(username: "Schmitty", email: "Werben@example.com",
+                              password: "password", admin: true)
+  end
+
+
   test "get new category form and create category" do
+    sign_in_as(@admin_user)
     get "/categories/new"
     assert_response :success
     assert_difference 'Category.count', 1 do
@@ -17,6 +25,7 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
   end
 
   test "get new category form reject invalid category submission" do
+    sign_in_as(@admin_user)
     get "/categories/new"
     assert_response :success
     # If there is an invalid submission then there should be no difference in the category count
