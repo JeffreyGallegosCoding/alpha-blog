@@ -18,6 +18,10 @@
         <div class="card-header font-italic">
           By <%= @article.user.username if @article.user %>
           <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+          <!-- Iterate through each category and display a partial for each category -->
+          <% if @article.categories.any? %>
+            <div class="mt-2"><%= render @article.categories %></div>
+          <% end %>
         </div>
         <div class="card-body">
           <div class="card-text text-left"><%= simple_format(@article.description) %></div>

@@ -27,7 +27,6 @@ class ArticlesController < ApplicationController
 
   #You need this with code in order to actually create your article
   def create
-    byebug
     #This code just renders the article info onto the page as an example
     # render plain: params[:article]
 
