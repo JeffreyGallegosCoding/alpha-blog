@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
 
   #You need this with code in order to actually create your article
   def create
+    byebug
     #This code just renders the article info onto the page as an example
     # render plain: params[:article]
 
@@ -73,7 +74,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
 
   # Allows the user to only access their article info even through url manipulation
